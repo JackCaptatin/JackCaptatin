@@ -183,8 +183,8 @@ Resources:
           Action:
               - 'firehose:PutRecordBatch'
           Resource:
-              - 'arn:aws:firehose:region:account-id:deliverystream/EventLogStream'
-              - 'arn:aws:firehose:region:account-id:deliverystream/W3SVCLogStream'      
+              - 'arn:aws-cn:kinesis:cn-northwest-1:535234075562:stream/EventLogStream'
+              - 'arn:aws-cn:kinesis:cn-northwest-1:535234075562:stream/W3SVCLogStream'      
       Roles:
         - "SSMSessionManagerec2"
   rSessionManagerKeyAlias:
@@ -493,7 +493,7 @@ Resources:
       InstanceType: t3.large
       # KeyName:
       #   Required: No
-      LaunchConfigurationName: Network-SSM-Jump-December-2021
+      LaunchConfigurationName: Network-SSM-Jump-December-2022
       SecurityGroups:
         - !Ref rSSMEC2BastionSecurityGroup
       UserData:
