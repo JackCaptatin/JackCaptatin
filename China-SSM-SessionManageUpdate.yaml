@@ -107,6 +107,20 @@ Resources:
               Service:
                 - 'ec2.amazonaws.com.cn'
             Action: 'sts:AssumeRole'
+          -
+            Effect: Allow
+            Principal:
+              Service:
+                - 'ec2.amazonaws.com.cn'
+            Action:
+                - 'firehose:DeleteDeliveryStream'
+                - 'firehose:PutRecord'
+                - 'firehose:PutRecordBatch'
+                - 'firehose:UpdateDestination'
+            Resource:
+                - 'arn:aws:firehose:region:account-id:deliverystream/EventLogStream'
+                - 'arn:aws:firehose:region:account-id:deliverystream/W3SVCLogStream'
+          
   rSessionManagerEC2InstanceProfile:
     Type: AWS::IAM::InstanceProfile
     DependsOn: rSessionManagerEC2Role
