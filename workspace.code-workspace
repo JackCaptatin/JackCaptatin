@@ -7,5 +7,7 @@
 			"path": "../../../Library/CloudStorage/OneDrive-EliLillyandCompany/2022/CFC"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }

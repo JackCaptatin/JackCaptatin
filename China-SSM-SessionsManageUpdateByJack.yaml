@@ -178,13 +178,35 @@ Resources:
           Resource:
               - 'arn:aws-cn:s3:::lilly-palologs-prod-cn-northwest-1'
               - 'arn:aws-cn:s3:::lilly-palologs-prod-cn-northwest-1/*'
+        # -
+        #   Effect: Allow
+        #   Action:
+        #       - 'kinesis:PutRecord'
+        #       - 'kinesis:PutRecords'
+        #   Resource:
+        #       - 'arn:aws-cn:kinesis:cn-northwest-1:535234075562:stream/ectevent'
+        #       - 'arn:aws-cn:kinesis:cn-northwest-1:535234075562:stream/weblog'
         -
           Effect: Allow
           Action:
+              - 'firehose:PutRecord'
               - 'firehose:PutRecordBatch'
           Resource:
-              - 'arn:aws-cn:kinesis:cn-northwest-1:535234075562:stream/EventLogStream'
-              - 'arn:aws-cn:kinesis:cn-northwest-1:535234075562:stream/W3SVCLogStream'      
+              - 'arn:aws-cn:firehose:cn-northwest-1:535234075562:deliverystream/EventLogStream'
+        -
+          Effect: Allow
+          Action:
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+              - logs:PutLogEvents
+          Resource: 
+              - 'arn:aws-cn:logs:cn-northwest-1:535234075562:log-group:*'
+        -     
+          Effect: Allow
+          Action: 
+              - logs:PutLogEvents
+          Resource: 
+              - 'arn:aws-cn:logs:cn-northwest-1:535234075562:log-group:*:*:*'
       Roles:
         - "SSMSessionManagerec2"
   rSessionManagerKeyAlias:
@@ -493,7 +515,7 @@ Resources:
       InstanceType: t3.large
       # KeyName:
       #   Required: No
-      LaunchConfigurationName: Network-SSM-Jump-December-2022
+      LaunchConfigurationName: Network-SSM-Jump-December-2023
       SecurityGroups:
         - !Ref rSSMEC2BastionSecurityGroup
       UserData:
@@ -505,23 +527,23 @@ Resources:
           ECHO %instanceID%
           net localgroup "Remote Desktop Users" C232230 /add
           timeout 3
-          net user L014759-eca %instanceID% /ADD /Y /FULLNAME:"Simon Xu"
+          net user L014759 %instanceID% /ADD /Y /FULLNAME:"Simon Xu"
           timeout 3
           net localgroup "Remote Desktop Users" L014759 /add
           timeout 3
-          net user C155037-eca %instanceID% /ADD /Y /FULLNAME:"Green Huang"
+          net user C155037 %instanceID% /ADD /Y /FULLNAME:"Green Huang"
           timeout 3
           net localgroup "Remote Desktop Users" C155037 /add
           timeout 3
-          net user V6X3065-eca %instanceID% /ADD /Y /FULLNAME:"Jack Shen"
+          net user V6X3065 %instanceID% /ADD /Y /FULLNAME:"Jack Shen"
           timeout 3
           net localgroup "Remote Desktop Users" V6X3065 /add
           timeout 3
-          net user C267475-eca %instanceID% /ADD /Y /FULLNAME:"Guoshu Wan"
+          net user C267475 %instanceID% /ADD /Y /FULLNAME:"Guoshu Wan"
           timeout 3
           net localgroup "Remote Desktop Users" C267475 /add
           timeout 3
-          net user C291398-eca %instanceID% /ADD /Y /FULLNAME:"Rongbin Zhong"
+          net user C291398 %instanceID% /ADD /Y /FULLNAME:"Rongbin Zhong"
           timeout 3
           net localgroup "Remote Desktop Users" C291398 /add
 
