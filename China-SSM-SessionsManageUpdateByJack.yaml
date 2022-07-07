@@ -192,8 +192,10 @@ Resources:
               - 'firehose:PutRecord'
               - 'firehose:PutRecordBatch'
           Resource:
-              - 'arn:aws-cn:firehose:cn-northwest-1:535234075562:deliverystream/EventLogStream'
-        -
+              - 'arn:aws-cn:firehose:cn-northwest-1:535234075562:deliverystream/EventLogStream' 
+              - 'arn:aws-cn:firehose:cn-northwest-1:535234075562:deliverystream/ApplicationLog'
+              - 'arn:aws-cn:firehose:cn-northwest-1:535234075562:deliverystream/SecurityLog'
+        -      
           Effect: Allow
           Action:
               - logs:DescribeLogGroups
@@ -515,7 +517,7 @@ Resources:
       InstanceType: t3.large
       # KeyName:
       #   Required: No
-      LaunchConfigurationName: Network-SSM-Jump-December-2023
+      LaunchConfigurationName: Network-SSM-Jump-December-2025
       SecurityGroups:
         - !Ref rSSMEC2BastionSecurityGroup
       UserData:
